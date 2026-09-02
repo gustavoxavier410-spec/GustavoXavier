@@ -1,0 +1,23 @@
+/* ============================================
+   gustavoxavier.dev — Portfolio
+   Global Styles
+   ============================================ */
+
+:root {
+  --bg: #0d1117;
+  --coral: #ff6b4a;
+  --ink: #eef1f5;
+  --ink-dim: #7c8794;
+  --line: #232a35;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Space Grotesk', sans-serif;
+  overflow-x: hidden;
+}

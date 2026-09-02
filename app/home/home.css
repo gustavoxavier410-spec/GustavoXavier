@@ -1,0 +1,190 @@
+/* ─── Host ─── */
+:host {
+  display: block;
+  cursor: none;
+}
+@media (hover: none) { :host { cursor: auto; } }
+
+/* ─── WebGL (Three.js) ─── */
+#webgl {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none;
+}
+
+/* ─── Cursor personalizado ─── */
+.cursor {
+  position: fixed; top: 0; left: 0; width: 8px; height: 8px;
+  background: var(--coral); border-radius: 50%;
+  pointer-events: none; z-index: 99; transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  position: fixed; top: 0; left: 0; width: 36px; height: 36px;
+  border: 1px solid var(--coral); border-radius: 50%;
+  pointer-events: none; z-index: 99; transform: translate(-50%, -50%);
+  opacity: .6;
+}
+
+/* ─── Eyebrow ─── */
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--ink-dim);
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 28px;
+  opacity: 0;
+}
+.eyebrow .line { width: 40px; height: 1px; background: var(--coral); }
+
+/* ─── Cantos ─── */
+.corner {
+  position: fixed; z-index: 2;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px; color: var(--ink-dim);
+  opacity: 0;
+}
+.corner.tl { top: 28px; left: 7vw; }
+.corner.tr {
+  top: 28px; right: 7vw;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: color .3s;
+}
+.corner.tr:hover { color: var(--coral); }
+
+.corner.bl {
+  bottom: 28px; left: 7vw;
+  display: flex; align-items: center; gap: 10px;
+}
+.corner .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--coral);
+  animation: pulse 1.8s infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
+
+/* ─── Main ─── */
+main {
+  position: relative; z-index: 2;
+  height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 7vw;
+  pointer-events: none;
+}
+main a { pointer-events: auto; }
+
+/* ─── Título ─── */
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(30px, 6vw, 84px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  /* Limita a largura do bloco: quebra o título em duas linhas
+     e cria respiro entre o texto e a arte de partículas. */
+  max-width: 11ch;
+}
+h1 .row {
+  overflow: hidden;
+  display: block;
+  padding: 0.06em 0.25em;
+  margin: -0.06em -0.25em;
+}
+h1 .word {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 0.78em;
+  transform: translateY(115%) rotate(4deg);
+  transform-origin: left bottom;
+}
+h1 .accent {
+  font-style: italic;
+  font-weight: 800;
+  font-size: 0.95em;
+  background: linear-gradient(90deg, var(--coral), #ffb199);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ─── Role ─── */
+.role {
+  margin-top: 34px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: clamp(14px, 1.6vw, 18px);
+  color: var(--ink-dim);
+  display: flex; align-items: center; gap: 14px;
+  opacity: 0;
+}
+.role .cur {
+  display: inline-block; width: 9px; height: 18px; background: var(--coral);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ─── CTA ─── */
+.cta {
+  margin-top: 56px;
+  display: inline-flex; align-items: center; gap: 16px;
+  width: fit-content;
+  padding: 0;
+  opacity: 0;
+}
+.cta a {
+  position: relative;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--bg);
+  background: var(--ink);
+  text-decoration: none;
+  padding: 16px 30px;
+  border-radius: 100px;
+  display: inline-block;
+  transition: background .3s, color .3s;
+}
+.cta a:hover { background: var(--coral); color: var(--bg); }
+#magnet { display: inline-block; }
+
+/* ─── Social ─── */
+.social {
+  position: fixed;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+}
+.social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink-dim);
+  transition: color .3s, border-color .3s, transform .3s;
+}
+.social a:hover {
+  color: var(--coral);
+  border-color: var(--coral);
+  transform: translateY(-3px);
+}
+.social svg { width: 20px; height: 20px; }
+
+/* ─── Responsivo / Mobile ─── */
+@media (max-width: 768px) {
+  /* Mantém "DISPONÍVEL PARA PROJETOS" na parte de baixo,
+     posicionado acima dos ícones sociais para não sobrepor. */
+  .corner.bl {
+    top: auto;
+    bottom: 96px;
+    left: 7vw;
+    white-space: nowrap;
+  }
+}
