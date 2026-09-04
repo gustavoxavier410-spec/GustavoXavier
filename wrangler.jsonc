@@ -6,6 +6,7 @@
     "enabled": true
   },
   "assets": {
-    "directory": "dist/site-xavier/browser"
+    "directory": "dist/site-xavier/browser",
+    "not_found_handling": "single-page-application"
   }
 }
